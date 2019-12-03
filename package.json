@@ -4,7 +4,10 @@
   "description": "An example of a telegram bot",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "part1": "nodemon part1.js",
+    "part2": "nodemon part2.js",
+    "part3": "nodemon part3.js"
   },
   "author": "Allan Galera, Jady Jacques",
   "license": "ISC",

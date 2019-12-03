@@ -2,17 +2,16 @@ const TelegramBot = require("node-telegram-bot-api");
 const puppeteer = require("puppeteer");
 const url = require("url");
 
-require('dotenv').config();
+require("dotenv").config();
 
 const token = process.env.TELEGRAM_TOKEN;
 
 const bot = new TelegramBot(token, { polling: true });
 
-bot.onText(/\/echo (.+)/, (msg, match) => {
+bot.on("message", msg => {
   const chatId = msg.chat.id;
-  const resp = match[1];
 
-  bot.sendMessage(chatId, resp);
+  bot.sendMessage(chatId, msg.text);
 });
 
 bot.onText(/\/sc (.+)/, async (msg, match) => {
@@ -25,7 +24,6 @@ bot.onText(/\/sc (.+)/, async (msg, match) => {
   }
 
   let screenShotFileName = `images/${new Date().getTime()}.png`;
-
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -40,9 +38,12 @@ bot.onText(/\/sc (.+)/, async (msg, match) => {
   bot.sendPhoto(chatId, screenShotFileName);
 });
 
-bot.on('new_chat_members', (msg) => {
-   bot.sendMessage(msg.chat.id, `Olá ${msg.from.first_name}, bem vindo ao Mastes of Node.js!`)
-})
+bot.on("new_chat_members", msg => {
+  bot.sendMessage(
+    msg.chat.id,
+    `Olá ${msg.new_chat_member.first_name}, bem vindo ao Mastes of Node.js!`
+  );
+});
 
 bot.on("message", msg => {
   const chatId = msg.chat.id;
