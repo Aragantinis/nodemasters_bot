@@ -1,0 +1,19 @@
+{
+  "name": "nodemasters_test_bot",
+  "version": "1.0.0",
+  "description": "An example of a telegram bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Allan Galera, Jady Jacques",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-telegram-bot-api": "^0.40.0",
+    "puppeteer": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
